@@ -9,7 +9,7 @@ package com.wfy.java.aQuickStart.OOP.Object;
 public class MethodDemo01 {
     public static void main(String[] args) {
         Person ming = new Person();
-        ming.setName("Tom");
+        ming.setName("Tom", "Jack");
         ming.setAge(10);
         System.out.println(ming.getName() + " " + ming.getAge());
     }
@@ -29,19 +29,21 @@ class Person {
 
     //不允许传入null和空字符串
     public void setName(String name) {
-        if(name == null || name.isBlank()){
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("invalid name value");
         }
         this.name = name;
     }
 
     //接收两个参数
-    public void setNameAndAge(String name, int age){
+    public void setNameAndAge(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
-    public void setName(String... names){
+
+    //可变参数用类型...定义，可变参数相当于数组类型
+    public void setName(String... names) {
         this.names = names;
     }
 
