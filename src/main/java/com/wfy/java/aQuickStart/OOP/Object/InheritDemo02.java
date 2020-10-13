@@ -8,10 +8,9 @@ package com.wfy.java.aQuickStart.OOP.Object;
 
 public class InheritDemo02 {
     public static void main(String[] args) {
-        Person6 person6 = new Person6("Tom", 10);
-        Student1 student1 = new Student1("Jack", 20);
-        student1.hello();
-
+        Person7 person7 = new Person7();
+        Student2 student2 = new Student2();
+        student2.superName();
     }
 }
 
@@ -44,13 +43,17 @@ class Student1 extends Person6 {
         this.name = name;
         this.age = age;
     }
+}
 
-    // 继承有个特点，就是子类无法访问父类的private字段或者private方法。
-    // 例如，Student类就无法访问Person类的name和age字段
-    // 可以将父类的private字段，改为projected，这样子类也可以访问
-    public void hello() {
+class Person7 {
+    protected String name = "Lucky";
+    protected int age;
+
+}
+
+class Student2 extends Person7 {
+    public void superName() {
+        //super关键字表示父类（超类）。子类引用父类的字段时，可以用super.fieldName。
         System.out.println(super.name);
-        System.out.println(super.age);
     }
-
 }
