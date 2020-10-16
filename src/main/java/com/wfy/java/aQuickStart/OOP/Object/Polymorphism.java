@@ -19,6 +19,26 @@ public class Polymorphism {
         // Java的实例方法调用是基于运行时的实际类型的动态调用，而非变量的声明类型。
         Person11 p1 = new Student6();
         p1.run(); // 输出Student.run
+
+        Income[] income = new Income[]{
+                new Income(5000),
+                new Salary(7000),
+                new StateCouncilSpecialAllowance(10000)
+        };
+        System.out.println("totalTax: " + totalTax(income));
+    }
+
+    // 利用多态，totalTax()方法只需要和Income打交道，
+    // 它完全不需要知道Salary和StateCouncilSpecialAllowance的存在，就可以正确计算出总的税。
+    // 如果我们要新增一种稿费收入，只需要从Income派生，然后正确覆写getTax()方法就可以。
+    // 把新的类型传入totalTax()，不需要修改任何代码。
+    // 多态具有一个非常强大的功能，就是允许添加更多类型的子类实现功能扩展，却不需要修改基于父类的代码。
+    public static double totalTax(Income... incomes) {
+        double total = 0;
+        for (Income income : incomes) {
+            total = total + income.getTax();
+        }
+        return total;
     }
 }
 
@@ -40,5 +60,52 @@ class Student6 extends Person11 {
     @Override
     public void run() {
         System.out.println("Student.run");
+    }
+
+    // 传入的参数类型是Person，但是在调用之前无法确定实际传入的类型究竟是Person，还是Student，还是Person的其他子类
+    // 因此，也无法确定调用的是不是Person类定义的run()方法。
+    // 多态的特性就是，运行期才能动态决定调用的子类方法。
+    // 对某个类型调用某个方法，执行的实际方法可能是某个子类的覆写方法。
+    public void runTwice(Person11 p) {
+        p.run();
+        p.run();
+    }
+}
+
+class Income {
+    protected double income;
+
+    public Income(double income) {
+        this.income = income;
+    }
+
+    public double getTax() {
+        return income * 0.1;
+    }
+}
+
+class Salary extends Income {
+    public Salary(double income) {
+        super(income);
+    }
+
+    @Override
+    public double getTax() {
+        if (income <= 5000) {
+            return 0;
+        } else {
+            return (income - 5000) * 0.1;
+        }
+    }
+}
+
+class StateCouncilSpecialAllowance extends Income {
+    public StateCouncilSpecialAllowance(double income) {
+        super(income);
+    }
+
+    @Override
+    public double getTax() {
+        return 0;
     }
 }
