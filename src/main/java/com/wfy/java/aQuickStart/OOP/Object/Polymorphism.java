@@ -10,9 +10,15 @@ public class Polymorphism {
     public static void main(String[] args) {
         Person11 person11 = new Person11();
         Student6 student6 = new Student6();
-        person11.run();
-        student6.run(); // 执行继承自父类的方法
-        student6.run("s"); // 有了入参，执行子类自己的方法
+        person11.run(); // 执行Person11的方法
+        student6.run();
+
+        // 一个实际类型为Student，引用类型为Person的变量，调用其run()方法，
+        // 调用的是Person还是Student的run()方法？
+        // 实际上调用的方法是Student的run()方法。
+        // Java的实例方法调用是基于运行时的实际类型的动态调用，而非变量的声明类型。
+        Person11 p1 = new Student6();
+        p1.run(); // 输出Student.run
     }
 }
 
@@ -31,8 +37,8 @@ class Student6 extends Person11 {
     // 加上@Override可以让编译器帮助检查是否进行了正确的覆写。
     // 希望进行覆写，但是不小心写错了方法签名，编译器会报错。
     // public void run(String s) {  // 传参与父类不同，不能Override
-    // @Override
-    public void run(String s) {
+    @Override
+    public void run() {
         System.out.println("Student.run");
     }
 }
