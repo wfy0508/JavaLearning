@@ -106,9 +106,9 @@ public class BoxingType {
         Number num = new Integer(999);
         // 获取byte, int, long, float, double:
         byte b = num.byteValue();
-        int n = num.intValue();
+        int n11 = num.intValue();
         long ln = num.longValue();
-        float f = num.floatValue();
+        float f1 = num.floatValue();
         double d = num.doubleValue();
     }
 }
