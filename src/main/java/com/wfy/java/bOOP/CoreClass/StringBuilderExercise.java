@@ -1,12 +1,10 @@
-package com.wfy.java.aQuickStart.OOP.CoreClass;
+package com.wfy.java.bOOP.CoreClass;
 
 /*
  * @Author wfy
  * @Date 2020/10/19 16:23
  * com.wfy.java.aQuickStart.OOP.CoreClass
  */
-
-import java.util.Arrays;
 
 public class StringBuilderExercise {
     public static void main(String[] args) {

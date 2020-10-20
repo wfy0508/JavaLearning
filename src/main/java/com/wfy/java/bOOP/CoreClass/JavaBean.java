@@ -1,4 +1,4 @@
-package com.wfy.java.aQuickStart.OOP.CoreClass;
+package com.wfy.java.bOOP.CoreClass;
 
 /*
  * @Author wfy

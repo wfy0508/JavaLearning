@@ -1,12 +1,10 @@
-package com.wfy.java.aQuickStart.OOP.Object;
+package com.wfy.java.bOOP.Object;
 
 /*
  * @Author wfy
  * @Date 2020/10/10 14:57
  * com.wfy.java.aQuickStart.OOP.Object
  */
-
-import java.util.Date;
 
 public class MethodDemo02 {
     public static void main(String[] args) {

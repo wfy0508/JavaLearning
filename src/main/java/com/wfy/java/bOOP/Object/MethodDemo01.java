@@ -1,4 +1,4 @@
-package com.wfy.java.aQuickStart.OOP.Object;
+package com.wfy.java.bOOP.Object;
 
 /*
  * @Author wfy
