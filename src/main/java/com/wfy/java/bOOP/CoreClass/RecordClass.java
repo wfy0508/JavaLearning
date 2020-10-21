@@ -57,7 +57,7 @@ record Point1(int x, int y) {
         public Point(int x, int y) {
             // 这是我们编写的Compact Constructor:
             if (x < 0 || y < 0) {
-                throw new IllegalArgumentE  xception();
+                throw new IllegalArgumentException();
             }
             // 这是编译器继续生成的赋值代码:
             this.x = x;
