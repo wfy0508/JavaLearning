@@ -47,6 +47,7 @@ public class ThrowingException {
         }
     }
 
+
     static void process1() {
         process2();
     }
