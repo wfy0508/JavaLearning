@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -32,13 +31,13 @@ public class ReflectionTest {
 
         Constructor<Person> constructor = clazz1.getConstructor(String.class, int.class);
         Person person1 = constructor.newInstance("Jack", 30);
-        System.out.println(person1.toString());
+        System.out.println(person1);
 
         // 通过反射调用类的属性和方法
         // 调用属性
         Field age = clazz1.getDeclaredField("age");
         age.set(person1, 22);
-        System.out.println(person1.toString());
+        System.out.println(person1);
 
         // 调用方法
         Method show = clazz1.getDeclaredMethod("show");
@@ -62,8 +61,32 @@ public class ReflectionTest {
         name.set(person1, "Lucky");
         System.out.println(person1);
     }
-}
 
+    /**
+     * 获取Class的实例4种方式
+     */
+    @Test
+    public void test3() throws Exception {
+        // 1. 通过运行时类的对象，调用getClass()
+        Person person1 = new Person("Lucy", 20);
+        Class<? extends Person> clazz1 = person1.getClass();
+        System.out.println(clazz1);
+
+        // 2. 通过运行时类 .class
+        Class<Person> clazz2 = Person.class;
+        System.out.println(clazz2);
+
+        // 3. 使用forName，要写类的全路径
+        Class<?> person3 = Class.forName("LearningTest.ReflectionTest.Peoples");
+        System.out.println(person3);
+
+        // 4. 通过类加载器
+        ClassLoader classLoader = ReflectionTest.class.getClassLoader();
+        Class<?> person4 = classLoader.loadClass("LearningTest.ReflectionTest.Peoples");
+        System.out.println(person4);
+
+    }
+}
 
 class Person {
 
@@ -100,10 +123,7 @@ class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "Person{" + "name='" + name + '\'' + ", age=" + age + '}';
     }
 
     public void show() {
