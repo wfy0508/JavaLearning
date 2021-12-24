@@ -32,7 +32,7 @@ public class Peoples extends Creature<String> implements Comparable<String>, MyI
         return nation;
     }
 
-    public String display(String interests) {
+    public String display(String interests) throws NullPointerException{
         return interests;
     }
 

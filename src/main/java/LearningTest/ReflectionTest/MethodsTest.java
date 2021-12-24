@@ -2,6 +2,7 @@ package LearningTest.ReflectionTest;
 
 import org.junit.Test;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
@@ -34,14 +35,56 @@ public class MethodsTest {
         }
     }
 
+    /**
+     * 权限修饰符
+     * 返回值类型
+     * 方法名（参数1， 参数2， ...）
+     * 注解
+     */
     @Test
     public void test2() {
         Class<Peoples> clazz1 = Peoples.class;
         Method[] methods = clazz1.getDeclaredMethods();
         for (Method m : methods) {
+            // 获取注解
+            Annotation[] annotations = m.getAnnotations();
+            for (Annotation anno : annotations) {
+                System.out.println(anno);
+            }
+            // 获取权限修饰符
             System.out.print(Modifier.toString(m.getModifiers()) + '\t');
-            System.out.print(m.getReturnType().toString()+'\t');
-            System.out.println(m.getName());
+            // 获取返回值类型
+            System.out.print(m.getReturnType().toString() + '\t');
+            // 获取方法名
+            System.out.print(m.getName() + " (");
+            // 获取形参列表
+            Class[] parameterTypes = m.getParameterTypes();
+            if (!(parameterTypes == null && parameterTypes.length == 0)) {
+                for (int i = 0; i < parameterTypes.length; i++) {
+                    if (i == parameterTypes.length - 1) {
+                        System.out.print(parameterTypes[i] + " args_" + i);
+                        break;
+                    }
+                    System.out.print(parameterTypes[i].getName() + " args_" + i + ",");
+                }
+            }
+            System.out.print(")");
+            // 获取抛出的异常
+            Class[] exceptionTypes = m.getExceptionTypes();
+            if (exceptionTypes.length > 0) {
+                System.out.print(" throws ");
+                for (int i = 0; i < exceptionTypes.length; i++) {
+                    if (i == exceptionTypes.length - 1) {
+                        System.out.print(exceptionTypes[i].getName() + " exception_");
+                        break;
+                    }
+                    System.out.print(exceptionTypes[i].getName() + " exception_" + ",");
+                }
+            }
+            else{
+                System.out.print(" 无异常抛出！");
+            }
+            System.out.println();
         }
     }
 }
