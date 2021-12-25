@@ -32,8 +32,12 @@ public class Peoples extends Creature<String> implements Comparable<String>, MyI
         return nation;
     }
 
-    public String display(String interests) throws NullPointerException{
+    public String display(String interests) throws NullPointerException {
         return interests;
+    }
+
+    public static void showDesc() {
+        System.out.println("这是一个静态方法");
     }
 
     @Override
