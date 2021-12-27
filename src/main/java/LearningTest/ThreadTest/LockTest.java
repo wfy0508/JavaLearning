@@ -8,6 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 不同：synchronized在执行完同步代码后会自动释放同步监视器
  *      lock需手动开启lock()，同时结束同步也需要手动实现unlock()
  *
+ * 优先使用顺序Lock >> 同步代码块 >> 同步方法
  * @author summer
  * @title: LockTest
  * @projectName JavaLearning
